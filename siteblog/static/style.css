@@ -284,6 +284,8 @@ section.blog-post-area h4 span.author-name {
 }
 
 .wrapper footer.footer {
+    position: fixed;
+    left: 0; bottom: 0;
     height: 130px;
 }
 
@@ -750,3 +752,10 @@ section.blog-post-area h4 span.author-name {
     font-size: 15px;
     font-weight: 500;
 }
+
+.grid .portfolio-item img{
+    width: 100px;
+
+}
+
+

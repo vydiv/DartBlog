@@ -3,5 +3,6 @@
         {% for item in categories %}
         <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
         {% endfor %}
+        <li><a href="{% url 'contact' %}">Контакты</a></li>
     </ul>
 </div>

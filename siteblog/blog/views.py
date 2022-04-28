@@ -1,9 +1,11 @@
+from django.contrib import messages
+from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 from .models import Post, Category, Tag, Comment
 from django.db.models import F
 
@@ -107,6 +109,7 @@ class Search(ListView):
         context['s'] = f"s = {self.request.GET.get('s')} &"
         return context
 
+
 # def index(request):
 #     return render(request, 'blog/index.html')
 #
@@ -117,3 +120,24 @@ class Search(ListView):
 #
 # def get_post(request, slug):
 #     return render(request, 'blog/category.html')
+def contact(request):
+    # objects = ['john', 'paul', 'george', 'ringo']
+    # paginator = Paginator(objects, 2)
+    # page_num = requset.GET.get('page', 1)
+    # page_objects = paginator.get_page(page_num)
+    # return render(requset, 'news/test1.html', {'page_obj': page_objects})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'email от кого отправлять',
+                             ['список email кому отправлять'], fail_silently=True)
+            if mail:
+                messages.success(request, 'Письмо отправлено!')
+                return redirect('contact')
+            else:
+                messages.error(request, 'Ошибка отправки')
+        else:
+            messages.error(request, 'Ошибка валидации')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {"form": form})
