@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Обратная связь :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="border-top" style="border-top: 1px solid #40c4ff;"></div>
+</div>
+<form class="decor" method="post">
+
+    {% csrf_token %}
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <h3>Написать нам</h3>
+        <div class="name">
+            {{ form.user_name }}
+        </div>
+        <div class="email">
+            {{ form.email }}
+        </div>
+        <div class="content">
+            {{ form.content }}
+        </div>
+        {{ form.captcha }}
+        <button type="submit"  class="btn_contact">Отправить</button>
+    </div>
+</form>
+<br>
+<br>
+<br>
+{% endblock %}

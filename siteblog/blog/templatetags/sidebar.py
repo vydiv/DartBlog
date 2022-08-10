@@ -10,7 +10,6 @@ def get_popular(cnt=3):
     return {'posts': posts}
 
 
-
 @register.inclusion_tag('blog/tags_tpl.html')
 def get_tags():
     tags = Tag.objects.all()
