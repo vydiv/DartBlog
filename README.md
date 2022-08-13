@@ -140,7 +140,7 @@ class Search(ListView):
         context['s'] = f"s = {self.request.GET.get('s')} &"
         return context
 ```
-## <a name="details">Форма контакты</a> с подключенной капчей при отправке 
+## <a name="contact">Форма контакты</a> с подключенной капчей при отправке 
 ![image](https://user-images.githubusercontent.com/11966417/183945136-f27891c5-dd82-41be-99e1-9db047558ef8.png)
 ```python
 class ContactForm(forms.Form):
